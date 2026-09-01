@@ -1,7 +1,12 @@
 [Adblock Plus 2.0]
 ! Title: FMKorea comments hide
-! Description: Hide the comment section on FMKorea while keeping the article visible.
+! Description: Hide FMKorea comment items while keeping the article visible.
 ! Updated: 2026-09-01
 
+! Current FMKorea comments use ids beginning with "comment"
+fmkorea.com##[id^="comment"]
+m.fmkorea.com##[id^="comment"]
+
+! Legacy wrapper fallback
 fmkorea.com##.fdb_lst_wrp
 m.fmkorea.com##.fdb_lst_wrp
