@@ -1,0 +1,32 @@
+name: 윈도우 EXE 빌드
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-exe:
+    runs-on: windows-latest
+
+    steps:
+      - name: 코드 내려받기
+        uses: actions/checkout@v4
+
+      - name: Python 설치
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: 의존성 설치
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+
+      - name: EXE 빌드
+        run: |
+          python -m PyInstaller --noconfirm --clean --windowed --onefile --name 클릭다운 app.py
+
+      - name: EXE 아티팩트 업로드
+        uses: actions/upload-artifact@v4
+        with:
+          name: 클릭다운-windows-exe
+          path: dist/클릭다운.exe
